@@ -1,0 +1,433 @@
+[debug] [2026-04-09T18:33:05.207Z] ----------------------------------------------------------------------
+[debug] [2026-04-09T18:33:05.212Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vishal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login:ci
+[debug] [2026-04-09T18:33:05.212Z] CLI Version:   15.12.0
+[debug] [2026-04-09T18:33:05.212Z] Platform:      win32
+[debug] [2026-04-09T18:33:05.213Z] Node Version:  v24.14.1
+[debug] [2026-04-09T18:33:05.213Z] Time:          Fri Apr 10 2026 00:03:05 GMT+0530 (India Standard Time)
+[debug] [2026-04-09T18:33:05.213Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-09T18:33:05.217Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[error] 
+[error] Error: Cannot run login:ci in non-interactive mode.
+[debug] [2026-04-09T18:38:03.224Z] ----------------------------------------------------------------------
+[debug] [2026-04-09T18:38:03.227Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vishal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js projects:list
+[debug] [2026-04-09T18:38:03.227Z] CLI Version:   15.12.0
+[debug] [2026-04-09T18:38:03.227Z] Platform:      win32
+[debug] [2026-04-09T18:38:03.227Z] Node Version:  v24.14.1
+[debug] [2026-04-09T18:38:03.227Z] Time:          Fri Apr 10 2026 00:08:03 GMT+0530 (India Standard Time)
+[debug] [2026-04-09T18:38:03.228Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-09T18:38:03.231Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-04-09T18:38:03.468Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-09T18:38:03.468Z] > authorizing via signed-in user (vishalbabu87@gmail.com)
+[debug] [2026-04-09T18:38:03.471Z] Checked if tokens are valid: false, expires at: 1775127797984
+[debug] [2026-04-09T18:38:03.471Z] Checked if tokens are valid: false, expires at: 1775127797984
+[debug] [2026-04-09T18:38:03.471Z] > refreshing access token with scopes: []
+[debug] [2026-04-09T18:38:03.473Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-04-09T18:38:03.473Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-09T18:38:03.645Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-04-09T18:38:03.645Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-09T18:38:03.682Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=1000
+[debug] [2026-04-09T18:38:04.075Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-04-09T18:38:04.076Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2026-04-09T18:38:04.668Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2026-04-09T18:38:04.668Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] ┌──────────────────────┬───────────────────────────┬────────────────┬──────────────────────┐
+│ Project Display Name │ Project ID                │ Project Number │ Resource Location ID │
+├──────────────────────┼───────────────────────────┼────────────────┼──────────────────────┤
+│ cofee                │ cofee-849d3 (current)     │ 651869596524   │ [Not specified]      │
+├──────────────────────┼───────────────────────────┼────────────────┼──────────────────────┤
+│ [Not specified]      │ device-streaming-bac6b880 │ 204561760907   │ [Not specified]      │
+├──────────────────────┼───────────────────────────┼────────────────┼──────────────────────┤
+│ [Not specified]      │ device-streaming-fcbf4795 │ 972777305592   │ [Not specified]      │
+└──────────────────────┴───────────────────────────┴────────────────┴──────────────────────┘
+[info] 
+[info] 3 project(s) total.
+[debug] [2026-04-09T18:41:57.610Z] ----------------------------------------------------------------------
+[debug] [2026-04-09T18:41:57.613Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vishal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js experiments:enable webframeworks
+[debug] [2026-04-09T18:41:57.613Z] CLI Version:   15.12.0
+[debug] [2026-04-09T18:41:57.613Z] Platform:      win32
+[debug] [2026-04-09T18:41:57.614Z] Node Version:  v24.14.1
+[debug] [2026-04-09T18:41:57.614Z] Time:          Fri Apr 10 2026 00:11:57 GMT+0530 (India Standard Time)
+[debug] [2026-04-09T18:41:57.614Z] ----------------------------------------------------------------------
+[debug] 
+[info] Enabled experiment webframeworks
+[debug] [2026-04-09T18:46:28.180Z] ----------------------------------------------------------------------
+[debug] [2026-04-09T18:46:28.183Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vishal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2026-04-09T18:46:28.183Z] CLI Version:   15.12.0
+[debug] [2026-04-09T18:46:28.183Z] Platform:      win32
+[debug] [2026-04-09T18:46:28.183Z] Node Version:  v24.14.1
+[debug] [2026-04-09T18:46:28.184Z] Time:          Fri Apr 10 2026 00:16:28 GMT+0530 (India Standard Time)
+[debug] [2026-04-09T18:46:28.184Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-09T18:46:30.783Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-09T18:46:30.784Z] > authorizing via signed-in user (vishalbabu87@gmail.com)
+[debug] [2026-04-09T18:46:30.784Z] [iam] checking project cofee-849d3 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-09T18:46:30.786Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:46:30.786Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:46:30.787Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions [none]
+[debug] [2026-04-09T18:46:30.787Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:46:30.787Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-09T18:46:32.167Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions 200
+[debug] [2026-04-09T18:46:32.168Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-09T18:46:32.169Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:46:32.169Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:46:32.170Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/cofee-849d3 [none]
+[debug] [2026-04-09T18:46:32.792Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/cofee-849d3 200
+[debug] [2026-04-09T18:46:32.793Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/cofee-849d3 {"projectId":"cofee-849d3","projectNumber":"651869596524","displayName":"cofee","name":"projects/cofee-849d3","resources":{"hostingSite":"cofee-849d3"},"state":"ACTIVE","etag":"1_b7c2a7ec-4a01-4e3d-b6f4-34b9b0f4a86d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2026-04-09T18:46:39.613Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:46:39.613Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:46:39.613Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 [none]
+[debug] [2026-04-09T18:46:40.762Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 200
+[debug] [2026-04-09T18:46:40.763Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 {"name":"projects/cofee-849d3/sites/cofee-849d3","defaultUrl":"https://cofee-849d3.web.app","appId":"1:651869596524:web:ac562095a78cc60894e149","type":"DEFAULT_SITE"}
+[info] ▲ Next.js 16.1.1 (Turbopack)
+
+[info] - Environments: .env
+
+
+[info]   Creating an optimized production build ...
+
+[info] ✓ Compiled successfully in 2.7s
+
+[info]   Running TypeScript ...
+
+[info]   Collecting page data using 7 workers ...
+
+[info]   Generating static pages using 7 workers (0/11) ...
+
+[info]   Generating static pages using 7 workers (2/11) 
+
+[info]   Generating static pages using 7 workers (5/11) 
+
+[info]   Generating static pages using 7 workers (8/11) 
+
+[info] ✓ Generating static pages using 7 workers (11/11) in 161.1ms
+
+[info]   Finalizing page optimization ...
+
+[info] 
+
+[info] Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/register
+├ ƒ /api/bills
+├ ƒ /api/expenses
+├ ƒ /api/sales
+├ ƒ /api/sarees
+├ ƒ /api/sarees/[id]/reserve
+├ ○ /apple-icon.png
+└ ○ /icon.png
+
+
+
+[info] ○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • non-static component /api/auth/login/route
+[info]  • non-static component /api/auth/logout/route
+[info]  • non-static component /api/auth/register/route
+[info]  • non-static component /api/bills/route
+[info]  • non-static component /api/expenses/route
+[debug] [2026-04-09T18:46:52.974Z]  • non-static component /api/sales/route
+[debug] [2026-04-09T18:46:52.974Z]  • non-static component /api/sarees/[id]/reserve/route
+[debug] [2026-04-09T18:46:52.974Z]  • non-static component /api/sarees/route
+[debug] [2026-04-09T18:46:52.974Z]  • non-static component /page
+[info] 
+[debug] [2026-04-09T18:47:05.037Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:47:05.038Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:47:05.038Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 [none]
+[debug] [2026-04-09T18:47:05.987Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 200
+[debug] [2026-04-09T18:47:05.987Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 {"name":"projects/cofee-849d3/sites/cofee-849d3","defaultUrl":"https://cofee-849d3.web.app","appId":"1:651869596524:web:ac562095a78cc60894e149","type":"DEFAULT_SITE"}
+[debug] [2026-04-09T18:47:22.993Z] Error: Command failed: npm i --omit dev --no-audit
+    at genericNodeError (node:internal/errors:985:15)
+    at wrappedFn (node:internal/errors:539:14)
+    at checkExecSyncError (node:child_process:925:11)
+    at execSync (node:child_process:997:15)
+    at prepareFrameworks (C:\Users\vishal\AppData\Roaming\npm\node_modules\firebase-tools\lib\frameworks\index.js:373:42)
+    at async deploy (C:\Users\vishal\AppData\Roaming\npm\node_modules\firebase-tools\lib\deploy\index.js:80:9)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-04-09T18:52:30.377Z] ----------------------------------------------------------------------
+[debug] [2026-04-09T18:52:30.380Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\vishal\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2026-04-09T18:52:30.380Z] CLI Version:   15.12.0
+[debug] [2026-04-09T18:52:30.380Z] Platform:      win32
+[debug] [2026-04-09T18:52:30.380Z] Node Version:  v24.14.1
+[debug] [2026-04-09T18:52:30.380Z] Time:          Fri Apr 10 2026 00:22:30 GMT+0530 (India Standard Time)
+[debug] [2026-04-09T18:52:30.380Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-09T18:52:31.459Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-09T18:52:31.460Z] > authorizing via signed-in user (vishalbabu87@gmail.com)
+[debug] [2026-04-09T18:52:31.460Z] [iam] checking project cofee-849d3 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-04-09T18:52:31.461Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:31.461Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:31.463Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions [none]
+[debug] [2026-04-09T18:52:31.463Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:52:31.463Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-09T18:52:32.833Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions 200
+[debug] [2026-04-09T18:52:32.834Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-04-09T18:52:32.834Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:32.834Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:32.834Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/cofee-849d3 [none]
+[debug] [2026-04-09T18:52:33.348Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/cofee-849d3 200
+[debug] [2026-04-09T18:52:33.348Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/cofee-849d3 {"projectId":"cofee-849d3","projectNumber":"651869596524","displayName":"cofee","name":"projects/cofee-849d3","resources":{"hostingSite":"cofee-849d3"},"state":"ACTIVE","etag":"1_b7c2a7ec-4a01-4e3d-b6f4-34b9b0f4a86d"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 15.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2026-04-09T18:52:37.991Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:37.991Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:37.991Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 [none]
+[debug] [2026-04-09T18:52:38.994Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 200
+[debug] [2026-04-09T18:52:38.994Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 {"name":"projects/cofee-849d3/sites/cofee-849d3","defaultUrl":"https://cofee-849d3.web.app","appId":"1:651869596524:web:ac562095a78cc60894e149","type":"DEFAULT_SITE"}
+[info] ▲ Next.js 16.1.1 (Turbopack)
+
+[info] - Environments: .env
+
+
+[info]   Creating an optimized production build ...
+
+[info] ✓ Compiled successfully in 2.2s
+
+[info]   Running TypeScript ...
+
+[info]   Collecting page data using 7 workers ...
+
+[info]   Generating static pages using 7 workers (0/11) ...
+
+[info]   Generating static pages using 7 workers (2/11) 
+
+[info]   Generating static pages using 7 workers (5/11) 
+
+[info]   Generating static pages using 7 workers (8/11) 
+
+[info] ✓ Generating static pages using 7 workers (11/11) in 147.0ms
+
+[info]   Finalizing page optimization ...
+
+[info] 
+
+[info] Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /api/auth/login
+├ ƒ /api/auth/logout
+├ ƒ /api/auth/register
+├ ƒ /api/bills
+├ ƒ /api/expenses
+├ ƒ /api/sales
+├ ƒ /api/sarees
+├ ƒ /api/sarees/[id]/reserve
+├ ○ /apple-icon.png
+└ ○ /icon.png
+
+
+
+[info] ○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • non-static component /api/auth/login/route
+[info]  • non-static component /api/auth/logout/route
+[info]  • non-static component /api/auth/register/route
+[info]  • non-static component /api/bills/route
+[info]  • non-static component /api/expenses/route
+[debug] [2026-04-09T18:52:48.173Z]  • non-static component /api/sales/route
+[debug] [2026-04-09T18:52:48.173Z]  • non-static component /api/sarees/[id]/reserve/route
+[debug] [2026-04-09T18:52:48.173Z]  • non-static component /api/sarees/route
+[debug] [2026-04-09T18:52:48.173Z]  • non-static component /page
+[info] 
+[debug] [2026-04-09T18:52:50.677Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:50.677Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:52:50.677Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 [none]
+[debug] [2026-04-09T18:52:51.685Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 200
+[debug] [2026-04-09T18:52:51.685Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/cofee-849d3/sites/cofee-849d3 {"name":"projects/cofee-849d3/sites/cofee-849d3","defaultUrl":"https://cofee-849d3.web.app","appId":"1:651869596524:web:ac562095a78cc60894e149","type":"DEFAULT_SITE"}
+[debug] [2026-04-09T18:53:53.801Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "site": "cofee-849d3",
+      "rewrites": [
+        {
+          "source": "**",
+          "function": {
+            "functionId": "ssrcofee849d3",
+            "region": "us-central1",
+            "pinTag": true
+          }
+        }
+      ],
+      "redirects": [],
+      "headers": [
+        {
+          "source": "/_not-found",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+            }
+          ]
+        },
+        {
+          "source": "/_global-error",
+          "headers": [
+            {
+              "key": "x-nextjs-stale-time",
+              "value": "300"
+            },
+            {
+              "key": "x-nextjs-prerender",
+              "value": "1"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_global-error/layout,_N_T_/_global-error/page,_N_T_/_global-error"
+            }
+          ]
+        },
+        {
+          "source": "/apple-icon.png",
+          "headers": [
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-type",
+              "value": "image/png"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/apple-icon.png/layout,_N_T_/apple-icon.png/route,_N_T_/apple-icon.png"
+            }
+          ]
+        },
+        {
+          "source": "/icon.png",
+          "headers": [
+            {
+              "key": "cache-control",
+              "value": "public, max-age=0, must-revalidate"
+            },
+            {
+              "key": "content-type",
+              "value": "image/png"
+            },
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/icon.png/layout,_N_T_/icon.png/route,_N_T_/icon.png"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "public": ".firebase\\cofee-849d3\\hosting",
+      "webFramework": "next_ssr"
+    }
+  ],
+  "functions": [
+    {
+      "source": ".firebase\\cofee-849d3\\functions",
+      "codebase": "firebase-frameworks-cofee-849d3"
+    }
+  ]
+}
+[debug] [2026-04-09T18:53:53.802Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-09T18:53:53.802Z] > authorizing via signed-in user (vishalbabu87@gmail.com)
+[debug] [2026-04-09T18:53:53.802Z] [iam] checking project cofee-849d3 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-04-09T18:53:53.802Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:53.803Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:53.803Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions [none]
+[debug] [2026-04-09T18:53:53.803Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:53:53.803Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-04-09T18:53:55.069Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions 200
+[debug] [2026-04-09T18:53:55.069Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[info] 
+[info] === Deploying to 'cofee-849d3'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2026-04-09T18:53:55.072Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:55.073Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:55.073Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3 [none]
+[debug] [2026-04-09T18:53:55.371Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3 200
+[debug] [2026-04-09T18:53:55.371Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/cofee-849d3 {"projectNumber":"651869596524","projectId":"cofee-849d3","lifecycleState":"ACTIVE","name":"cofee","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-04-01T10:05:59.328Z"}
+[info] i  functions: preparing codebase firebase-frameworks-cofee-849d3 for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2026-04-09T18:53:55.373Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:55.373Z] Checked if tokens are valid: true, expires at: 1775763482646
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2026-04-09T18:53:55.374Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:55.374Z] Checked if tokens are valid: true, expires at: 1775763482646
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-04-09T18:53:55.375Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:55.375Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:55.376Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudfunctions.googleapis.com [none]
+[debug] [2026-04-09T18:53:55.376Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudfunctions.googleapis.com  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:53:55.380Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com [none]
+[debug] [2026-04-09T18:53:55.380Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:53:55.382Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/artifactregistry.googleapis.com [none]
+[debug] [2026-04-09T18:53:55.382Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/artifactregistry.googleapis.com  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:53:57.008Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/artifactregistry.googleapis.com 200
+[debug] [2026-04-09T18:53:57.008Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/artifactregistry.googleapis.com [omitted]
+[warn] !  artifactregistry: missing required API artifactregistry.googleapis.com. Enabling now... 
+[debug] [2026-04-09T18:53:57.010Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:57.010Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:57.011Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/artifactregistry.googleapis.com:enable [none]
+[debug] [2026-04-09T18:53:57.011Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/artifactregistry.googleapis.com:enable  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:53:57.015Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudfunctions.googleapis.com 200
+[debug] [2026-04-09T18:53:57.015Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudfunctions.googleapis.com [omitted]
+[warn] !  functions: missing required API cloudfunctions.googleapis.com. Enabling now... 
+[debug] [2026-04-09T18:53:57.016Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:57.016Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:57.016Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudfunctions.googleapis.com:enable [none]
+[debug] [2026-04-09T18:53:57.016Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudfunctions.googleapis.com:enable  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:53:57.047Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com 200
+[debug] [2026-04-09T18:53:57.047Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com [omitted]
+[warn] !  functions: missing required API cloudbuild.googleapis.com. Enabling now... 
+[debug] [2026-04-09T18:53:57.048Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:57.048Z] Checked if tokens are valid: true, expires at: 1775763482646
+[debug] [2026-04-09T18:53:57.049Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com:enable [none]
+[debug] [2026-04-09T18:53:57.049Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com:enable  x-goog-user-project=cofee-849d3
+[debug] [2026-04-09T18:53:57.472Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com:enable 400
+[debug] [2026-04-09T18:53:57.472Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/cofee-849d3/services/cloudbuild.googleapis.com:enable [omitted]
+[error] 
+[error] Error: Your project cofee-849d3 must be on the Blaze (pay-as-you-go) plan to complete this command. Required API cloudbuild.googleapis.com can't be enabled until the upgrade is complete. To upgrade, visit the following URL:
+
+https://console.firebase.google.com/project/cofee-849d3/usage/details

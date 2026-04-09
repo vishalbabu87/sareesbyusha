@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #f4efe7;
+  --surface: rgba(255, 252, 248, 0.82);
+  --surface-strong: rgba(255, 255, 255, 0.92);
+  --ink: #1f2937;
+  --muted: #5b6472;
+  --line: rgba(148, 163, 184, 0.22);
+  --brand-teal: #0e7490;
+  --brand-saffron: #f59e0b;
+  --brand-clay: #b45309;
+  --brand-plum: #9f1239;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,0.35), transparent 30%),
+    radial-gradient(circle at top left, rgba(245, 158, 11, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(14, 116, 144, 0.18), transparent 26%),
+    linear-gradient(180deg, #fbf7f0 0%, #f4efe7 44%, #efe7db 100%);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), serif;
+  letter-spacing: -0.03em;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.saree-atmosphere {
+  background:
+    radial-gradient(circle at 14% 20%, rgba(245, 158, 11, 0.18), transparent 30%),
+    radial-gradient(circle at 83% 15%, rgba(14, 116, 144, 0.16), transparent 26%),
+    radial-gradient(circle at 62% 70%, rgba(159, 18, 57, 0.10), transparent 25%),
+    linear-gradient(135deg, rgba(255,255,255,0.18), transparent 55%);
+  filter: blur(10px);
+  animation: drift 14s ease-in-out infinite alternate;
+}
+
+.saree-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.22) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.18), transparent 88%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(15, 23, 42, 0.05) 0.8px, transparent 0.8px),
+    radial-gradient(rgba(15, 23, 42, 0.04) 0.6px, transparent 0.6px);
+  background-position: 0 0, 18px 18px;
+  background-size: 36px 36px;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+}
+
+::selection {
+  background: rgba(14, 116, 144, 0.18);
+  color: #0f172a;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(0, 18px, 0) scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .saree-atmosphere {
+    animation: none;
+  }
+}

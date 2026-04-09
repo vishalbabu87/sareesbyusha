@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  sessions     Session[]
+  sarees       Saree[]
+  expenses     Expense[]
+  bills        Bill[]
+  sales        Sale[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Bill {
+  id           String    @id @default(cuid())
+  supplierName String
+  totalAmount  Int
+  uploadDate   DateTime
+  notes        String
+  fileName     String?
+  fileType     String?
+  fileUrl      String?
+  createdAt    DateTime  @default(now())
+  ownerId      String
+  owner        User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  sarees       Saree[]
+  expenses     Expense[]
+}
+
+model Saree {
+  id                   String     @id @default(cuid())
+  sku                  String
+  name                 String
+  collection           String
+  fabric               String
+  color                String
+  sourceMarket         String
+  purchasePrice        Int
+  expectedSellingPrice Int
+  status               SareeStatus
+  purchaseDate         DateTime
+  soldDate             DateTime?
+  notes                String
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+  ownerId              String
+  owner                User       @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  billId               String?
+  bill                 Bill?      @relation(fields: [billId], references: [id], onDelete: SetNull)
+  sale                 Sale?
+  expenses             Expense[]
+}
+
+model Expense {
+  id            String       @id @default(cuid())
+  title         String
+  category      String
+  amount        Int
+  date          DateTime
+  scope         ExpenseScope
+  notes         String?
+  createdAt     DateTime     @default(now())
+  ownerId       String
+  owner         User         @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  linkedSareeId String?
+  linkedSaree   Saree?       @relation(fields: [linkedSareeId], references: [id], onDelete: SetNull)
+  linkedBillId  String?
+  linkedBill    Bill?        @relation(fields: [linkedBillId], references: [id], onDelete: SetNull)
+}
+
+model Sale {
+  id            String        @id @default(cuid())
+  sellingPrice  Int
+  date          DateTime
+  customerName  String?
+  paymentMethod PaymentMethod
+  createdAt     DateTime      @default(now())
+  ownerId       String
+  owner         User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  sareeId       String        @unique
+  saree         Saree         @relation(fields: [sareeId], references: [id], onDelete: Cascade)
+}
+
+enum SareeStatus {
+  UNSOLD
+  RESERVED
+  SOLD
+}
+
+enum ExpenseScope {
+  GLOBAL
+  SAREE
+  BILL
+}
+
+enum PaymentMethod {
+  UPI
+  CASH
+  BANK_TRANSFER
+  CARD
+}

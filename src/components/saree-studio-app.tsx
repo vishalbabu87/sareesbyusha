@@ -577,17 +577,15 @@ export function SareeStudioApp({ initialData, userName, userEmail }: SareeStudio
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-3xl">
               <div className="flex flex-col gap-4">
-                <div className="inline-flex w-fit items-center gap-4 rounded-full border border-slate-200/80 bg-white/82 p-2 pr-6 shadow-sm backdrop-blur-md">
-                  <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-4 border-white/60 bg-white/95 p-3 shadow-xl sm:h-28 sm:w-28 sm:p-4">
-                    <Image
-                      src="/brand/logo-transparent.png"
-                      alt="Sarees by Usha"
-                      width={560}
-                      height={260}
-                      priority
-                      className="h-auto w-full drop-shadow-md"
-                    />
-                  </div>
+                <div className="inline-flex w-fit items-center gap-3 rounded-[28px] border border-slate-200/80 bg-white/82 px-4 py-3 shadow-sm">
+                  <Image
+                    src="/brand/logo-transparent.png"
+                    alt="Sarees by Usha"
+                    width={560}
+                    height={260}
+                    priority
+                    className="h-auto w-[210px] sm:w-[250px]"
+                  />
                   <div className="hidden sm:block">
                     <p className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] text-slate-500">
                       <Sparkles className="h-4 w-4 text-[var(--brand-saffron)]" />

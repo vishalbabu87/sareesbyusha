@@ -51,14 +51,16 @@ export function AuthShell({ hasUsers }: { hasUsers: boolean }) {
               <Sparkles className="h-4 w-4 text-amber-300" />
               Sarees by Usha Atelier OS
             </div>
-            <div className="mt-8 flex h-[280px] w-[280px] shrink-0 items-center justify-center rounded-full border-[6px] border-white/60 bg-white/95 p-8 shadow-[0_0_80px_rgba(255,255,255,0.15)] backdrop-blur-xl sm:h-[340px] sm:w-[340px] sm:p-10">
+            <div className="relative mt-8 max-w-[340px]">
+              {/* Soft white glowing round aura behind logo */}
+              <div className="absolute left-1/2 top-1/2 -z-10 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-60 blur-[50px] sm:h-[280px] sm:w-[280px]" />
               <Image
                 src="/brand/logo-transparent.png"
                 alt="Sarees by Usha"
                 width={520}
                 height={520}
                 priority
-                className="h-auto w-full drop-shadow-xl"
+                className="relative z-10 h-auto w-full drop-shadow-[0_10px_30px_rgba(15,23,42,0.4)]"
               />
             </div>
             <h1 className="mt-8 max-w-3xl font-display text-5xl leading-none sm:text-6xl lg:text-[5.4rem]">
@@ -85,7 +87,8 @@ export function AuthShell({ hasUsers }: { hasUsers: boolean }) {
         <section className="flex items-center">
           <div className="w-full rounded-[34px] border border-white/70 bg-white/86 p-6 shadow-[0_24px_90px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8">
             <div className="flex flex-col items-center gap-4 sm:flex-row">
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-white bg-white/95 p-3 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-md">
+              <div className="relative flex h-16 w-16 shrink-0 items-center justify-center">
+                <div className="absolute inset-0 -z-10 rounded-full bg-white opacity-80 blur-xl" />
                 <Image
                   src="/brand/app-icon.png"
                   alt="Sarees by Usha emblem"

@@ -51,14 +51,14 @@ export function AuthShell({ hasUsers }: { hasUsers: boolean }) {
               <Sparkles className="h-4 w-4 text-amber-300" />
               Sarees by Usha Atelier OS
             </div>
-            <div className="mt-8 max-w-[320px] rounded-[32px] border border-white/12 bg-white/8 p-4 backdrop-blur-md">
+            <div className="mt-8 flex h-[280px] w-[280px] shrink-0 items-center justify-center rounded-full border-[6px] border-white/60 bg-white/95 p-8 shadow-[0_0_80px_rgba(255,255,255,0.15)] backdrop-blur-xl sm:h-[340px] sm:w-[340px] sm:p-10">
               <Image
                 src="/brand/logo-transparent.svg"
                 alt="Sarees by Usha"
                 width={520}
                 height={520}
                 priority
-                className="h-auto w-full drop-shadow-[0_24px_48px_rgba(15,23,42,0.35)]"
+                className="h-auto w-full drop-shadow-xl"
               />
             </div>
             <h1 className="mt-8 max-w-3xl font-display text-5xl leading-none sm:text-6xl lg:text-[5.4rem]">
@@ -84,8 +84,8 @@ export function AuthShell({ hasUsers }: { hasUsers: boolean }) {
 
         <section className="flex items-center">
           <div className="w-full rounded-[34px] border border-white/70 bg-white/86 p-6 shadow-[0_24px_90px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8">
-            <div className="flex items-center gap-3">
-              <div className="flex h-14 w-14 items-center justify-center rounded-[20px] border border-slate-200 bg-[linear-gradient(155deg,rgba(15,23,42,0.05),rgba(14,116,144,0.10))] p-1.5 shadow-sm">
+            <div className="flex flex-col items-center gap-4 sm:flex-row">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-white bg-white/95 p-3 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-md">
                 <Image
                   src="/brand/app-icon.svg"
                   alt="Sarees by Usha emblem"

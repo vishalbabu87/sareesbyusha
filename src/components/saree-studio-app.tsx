@@ -580,7 +580,7 @@ export function SareeStudioApp({ initialData, userName, userEmail }: SareeStudio
                 <div className="inline-flex w-fit items-center gap-4 rounded-full border border-slate-200/80 bg-white/82 p-2 pr-6 shadow-sm backdrop-blur-md">
                   <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full border-4 border-white/60 bg-white/95 p-3 shadow-xl sm:h-28 sm:w-28 sm:p-4">
                     <Image
-                      src="/brand/logo-transparent.svg"
+                      src="/brand/logo-transparent.png"
                       alt="Sarees by Usha"
                       width={560}
                       height={260}

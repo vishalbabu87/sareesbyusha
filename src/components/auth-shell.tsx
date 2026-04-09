@@ -53,7 +53,7 @@ export function AuthShell({ hasUsers }: { hasUsers: boolean }) {
             </div>
             <div className="mt-8 flex h-[280px] w-[280px] shrink-0 items-center justify-center rounded-full border-[6px] border-white/60 bg-white/95 p-8 shadow-[0_0_80px_rgba(255,255,255,0.15)] backdrop-blur-xl sm:h-[340px] sm:w-[340px] sm:p-10">
               <Image
-                src="/brand/logo-transparent.svg"
+                src="/brand/logo-transparent.png"
                 alt="Sarees by Usha"
                 width={520}
                 height={520}
@@ -87,7 +87,7 @@ export function AuthShell({ hasUsers }: { hasUsers: boolean }) {
             <div className="flex flex-col items-center gap-4 sm:flex-row">
               <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full border-4 border-white bg-white/95 p-3 shadow-[0_8px_30px_rgba(15,23,42,0.08)] backdrop-blur-md">
                 <Image
-                  src="/brand/app-icon.svg"
+                  src="/brand/app-icon.png"
                   alt="Sarees by Usha emblem"
                   width={72}
                   height={72}

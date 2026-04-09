@@ -21,6 +21,10 @@ export const metadata: Metadata = {
   },
   applicationName: "Sarees by Usha",
   description: "Sarees by Usha studio workspace for inventory, sales, expenses, supplier bills, and profit control.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

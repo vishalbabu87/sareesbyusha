@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
-  "name": "sareesbyusha",
+  "name": "sareesbyusha", // v1.0.1-deploy
   "compatibility_date": "2024-01-01",
   "compatibility_flags": [
     "nodejs_compat"

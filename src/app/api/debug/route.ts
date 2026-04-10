@@ -1,26 +1,16 @@
 export const runtime = 'edge';
-import { db } from '@/lib/db';
 import { NextResponse } from 'next/server';
 
+// Zero-Prisma debug endpoint - just checks environment variables
 export async function GET() {
-  try {
-    // Force a simple query to test connection
-    const userCount = await (db as any).user.count();
-    
-    return NextResponse.json({
-      status: 'success',
-      runtime: 'edge',
-      database_url: process.env.DATABASE_URL ? 'PRESENT' : 'MISSING',
-      user_count: userCount
-    });
-  } catch (error: any) {
-    return NextResponse.json({
-      status: 'error',
-      message: error?.message || 'Unknown database error',
-      stack: error?.stack,
-      env: {
-          DATABASE_URL: process.env.DATABASE_URL ? 'PRESENT' : 'MISSING'
-      }
-    }, { status: 500 });
-  }
+  const dbUrl = process.env.DATABASE_URL || '';
+  
+  return NextResponse.json({
+    status: 'env-check',
+    database_url_present: !!dbUrl,
+    database_url_length: dbUrl.length,
+    database_url_prefix: dbUrl.substring(0, 20) || 'EMPTY',
+    node_env: process.env.NODE_ENV,
+    timestamp: new Date().toISOString(),
+  });
 }

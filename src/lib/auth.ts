@@ -1,29 +1,52 @@
 import 'server-only';
 
-import { createHash, randomBytes } from 'crypto';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
-import bcrypt from 'bcryptjs';
 import { db } from '@/lib/db';
 
 const SESSION_COOKIE = 'saree_studio_session';
 const SESSION_DAYS = 14;
 
-function hashToken(token: string) {
-  return createHash('sha256').update(token).digest('hex');
+// Use Web Crypto API (Edge compatible) instead of Node.js crypto
+async function hashToken(token: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(token);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-export async function hashPassword(password: string) {
-  return bcrypt.hash(password, 10);
+// Simple hash for password (using PBKDF2 - Edge compatible)
+export async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const key = await crypto.subtle.importKey('raw', data, 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' }, key, 256);
+  const hashArray = Array.from(new Uint8Array(bits));
+  const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2, '0')).join('');
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return saltHex + ':' + hashHex;
 }
 
-export async function verifyPassword(password: string, passwordHash: string) {
-  return bcrypt.compare(password, passwordHash);
+export async function verifyPassword(password: string, storedHash: string): Promise<boolean> {
+  const [saltHex, oldHashHex] = storedHash.split(':');
+  const salt = new Uint8Array(saltHex.match(/.{1,2}/g)?.map(byte => parseInt(byte, 16)) || []);
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const key = await crypto.subtle.importKey('raw', data, 'PBKDF2', false, ['deriveBits']);
+  const bits = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' }, key, 256);
+  const hashArray = Array.from(new Uint8Array(bits));
+  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  return hashHex === oldHashHex;
 }
 
 export async function createSession(userId: string) {
-  const token = randomBytes(32).toString('hex');
-  const tokenHash = hashToken(token);
+  // Use Web Crypto for random token
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  const token = Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
+  const tokenHash = await hashToken(token);
   const expiresAt = new Date(Date.now() + SESSION_DAYS * 24 * 60 * 60 * 1000);
 
   await db.session.create({
@@ -48,9 +71,10 @@ export async function clearSession() {
   const cookieStore = await cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
   if (token) {
+    const tokenHash = await hashToken(token);
     await db.session.deleteMany({
       where: {
-        tokenHash: hashToken(token),
+        tokenHash,
       },
     });
   }
@@ -71,9 +95,10 @@ export const getSessionUser = cache(async () => {
     return null;
   }
 
+  const tokenHash = await hashToken(token);
   const session = await db.session.findUnique({
     where: {
-      tokenHash: hashToken(token),
+      tokenHash,
     },
     include: {
       user: true,

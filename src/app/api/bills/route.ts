@@ -1,12 +1,11 @@
-export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 import { requireSessionUser } from '@/lib/auth';
 import { db } from '@/lib/db';
 
 async function fileToDataUrl(file: File): Promise<string> {
   const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  const base64 = buffer.toString('base64');
+  // Use Uint8Array instead of Buffer (Buffer not available in Edge)
+  const base64 = btoa(String.fromCharCode(...new Uint8Array(bytes)));
   const mimeType = file.type || 'application/octet-stream';
   return `data:${mimeType};base64,${base64}`;
 }

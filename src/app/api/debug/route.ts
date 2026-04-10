@@ -1,28 +1,26 @@
 export const runtime = 'edge';
-import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const dbUrl = process.env.DATABASE_URL;
-    const dbUrlStatus = dbUrl ? `PRESENT (Length: ${dbUrl.length})` : 'MISSING';
-    
-    // Attempt a light query
-    const userCount = await db.user.count();
+    // Force a simple query to test connection
+    const userCount = await (db as any).user.count();
     
     return NextResponse.json({
       status: 'success',
-      database_url: dbUrlStatus,
-      user_count: userCount,
       runtime: 'edge',
-      time: new Date().toISOString()
+      database_url: process.env.DATABASE_URL ? 'PRESENT' : 'MISSING',
+      user_count: userCount
     });
   } catch (error: any) {
     return NextResponse.json({
       status: 'error',
-      database_url: process.env.DATABASE_URL ? 'PRESENT' : 'MISSING',
-      error: error?.message || 'Unknown error',
+      message: error?.message || 'Unknown database error',
       stack: error?.stack,
+      env: {
+          DATABASE_URL: process.env.DATABASE_URL ? 'PRESENT' : 'MISSING'
+      }
     }, { status: 500 });
   }
 }

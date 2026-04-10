@@ -4,17 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node -e \"const fs=require('fs'); if(fs.existsSync('.building')){ fs.unlinkSync('.building'); require('child_process').spawnSync('npm', ['run', 'next:build'], {stdio:'inherit', shell:true}); } else { fs.writeFileSync('.building',''); require('child_process').spawnSync('npm', ['run', 'pages:build'], {stdio:'inherit', shell:true}); }\"",
-    "next:build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "postinstall": "prisma generate --no-engine",
-    "db:generate": "prisma generate --no-engine",
-    "db:push": "prisma db push",
-    "pages:build": "next-on-pages && node -e \"const fs=require('fs'); if(fs.existsSync('.vercel/output/static')){fs.writeFileSync('.vercel/output/static/.assetsignore', '_worker.js')}\"",
-    "pages:dev": "wrangler pages dev .vercel/output --transpile-only --compatibility-date=2024-11-01",
+    "build": "prisma generate --no-engine && next-on-pages",
+    "pages:build": "prisma generate --no-engine && next-on-pages",
     "pages:deploy": "wrangler pages deploy .vercel/output --project-name sareesbyusha",
-    "deploy": "npm run pages:build && npm run pages:deploy -- --project-name sareesbyusha",
+    "deploy": "npm run build && npm run pages:deploy -- --project-name sareesbyusha",
     "preview": "npm run pages:build && npm run pages:dev"
   },
   "dependencies": {

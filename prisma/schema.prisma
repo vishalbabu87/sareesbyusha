@@ -60,6 +60,9 @@ model Saree {
   purchaseDate         DateTime
   soldDate             DateTime?
   notes                String
+  imageUrl             String? // Data URL for small MVP images
+  imageType            String?
+  lotNumber            String?
   createdAt            DateTime   @default(now())
   updatedAt            DateTime   @updatedAt
   ownerId              String

@@ -3,40 +3,68 @@ import { z } from 'zod';
 import { requireSessionUser } from '@/lib/auth';
 import { db } from '@/lib/db';
 
-const schema = z.object({
-  name: z.string().min(2),
-  collection: z.string().min(1),
-  fabric: z.string().min(1),
-  color: z.string().min(1),
-  sourceMarket: z.string().min(1),
-  purchasePrice: z.coerce.number().nonnegative(),
-  expectedSellingPrice: z.coerce.number().nonnegative(),
-  purchaseDate: z.string().min(1),
-  notes: z.string().optional(),
-  billId: z.string().optional(),
-  sku: z.string().min(3),
-});
+// Helper to convert File to base64 data URL
+async function fileToDataUrl(file: File): Promise<string> {
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+  const base64 = buffer.toString('base64');
+  const mimeType = file.type || 'image/jpeg';
+  return `data:${mimeType};base64,${base64}`;
+}
 
 export async function POST(request: Request) {
   try {
     const user = await requireSessionUser();
-    const payload = schema.parse(await request.json());
+    
+    // Parse FormData
+    const formData = await request.formData();
+    
+    const name = formData.get('name') as string;
+    const collection = formData.get('collection') as string;
+    const fabric = formData.get('fabric') as string;
+    const color = formData.get('color') as string;
+    const sourceMarket = formData.get('sourceMarket') as string;
+    const purchasePrice = Number(formData.get('purchasePrice'));
+    const expectedSellingPrice = Number(formData.get('expectedSellingPrice'));
+    const purchaseDate = formData.get('purchaseDate') as string;
+    const notes = formData.get('notes') as string;
+    const billId = formData.get('billId') as string;
+    const sku = formData.get('sku') as string;
+    const lotNumber = formData.get('lotNumber') as string;
+    const imageFile = formData.get('image') as File | null;
+
+    // Validate required fields
+    if (!name || !sku || isNaN(purchasePrice) || isNaN(expectedSellingPrice)) {
+      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    // Process image if present
+    let imageUrl: string | null = null;
+    if (imageFile && imageFile.size > 0) {
+      // Limit size to ~1.5MB for data URL storage
+      if (imageFile.size > 1_600_000) {
+        return NextResponse.json({ error: 'Image too large. Max 1.5MB allowed.' }, { status: 400 });
+      }
+      imageUrl = await fileToDataUrl(imageFile);
+    }
 
     const saree = await db.saree.create({
       data: {
         ownerId: user.id,
-        sku: payload.sku,
-        name: payload.name.trim(),
-        collection: payload.collection.trim(),
-        fabric: payload.fabric.trim(),
-        color: payload.color.trim(),
-        sourceMarket: payload.sourceMarket.trim(),
-        purchasePrice: Math.round(payload.purchasePrice),
-        expectedSellingPrice: Math.round(payload.expectedSellingPrice),
-        purchaseDate: new Date(payload.purchaseDate),
-        notes: payload.notes?.trim() ?? '',
-        billId: payload.billId || null,
+        sku: sku.trim(),
+        name: name.trim(),
+        collection: collection?.trim() || 'General',
+        fabric: fabric?.trim() || 'Mixed',
+        color: color?.trim() || 'Not specified',
+        sourceMarket: sourceMarket?.trim() || 'Direct',
+        purchasePrice: Math.round(purchasePrice),
+        expectedSellingPrice: Math.round(expectedSellingPrice),
+        purchaseDate: new Date(purchaseDate),
+        notes: notes?.trim() ?? '',
+        billId: billId || null,
         status: 'UNSOLD',
+        imageUrl: imageUrl,
+        lotNumber: lotNumber?.trim() || null,
       },
     });
 
@@ -55,15 +83,14 @@ export async function POST(request: Request) {
       soldDate: undefined,
       notes: saree.notes,
       billId: saree.billId ?? undefined,
+      imageUrl: saree.imageUrl ?? undefined,
+      lotNumber: saree.lotNumber ?? undefined,
     });
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json({ error: error.issues[0]?.message ?? 'Invalid request.' }, { status: 400 });
-    }
     if (error instanceof Error && error.message === 'Unauthorized') {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-
+    console.error('Error creating saree:', error);
     return NextResponse.json({ error: 'Unable to save the saree right now.' }, { status: 500 });
   }
 }

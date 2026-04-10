@@ -1,0 +1,13 @@
+name = "saree-studio-os"
+compatibility_date = "2024-01-01"
+
+# Cloudflare Pages with Next.js
+[build]
+command = "npm run pages:build"
+
+# Environment variables (set these via wrangler secret or Cloudflare Dashboard)
+# DATABASE_URL = ""
+# SESSION_SECRET = ""
+
+# Node.js compatibility
+compatibility_flags = ["nodejs_compat"]

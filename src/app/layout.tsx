@@ -21,9 +21,15 @@ export const metadata: Metadata = {
   },
   applicationName: "Sarees by Usha",
   description: "Sarees by Usha studio workspace for inventory, sales, expenses, supplier bills, and profit control.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Saree OS",
+  },
   icons: {
     icon: "/icon.png",
-    apple: "/apple-icon.png",
+    apple: "/brand/app-icon.png",
   },
 };
 

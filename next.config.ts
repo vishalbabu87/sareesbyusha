@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     dangerouslyAllowSVG: true,
+    unoptimized: true,
   },
 };
 

@@ -41,6 +41,8 @@ export async function getBusinessData(ownerId: string): Promise<BusinessData> {
       soldDate: item.soldDate?.toISOString().slice(0, 10),
       notes: item.notes,
       billId: item.billId ?? undefined,
+      imageUrl: item.imageUrl ?? undefined,
+      lotNumber: item.lotNumber ?? undefined,
     })),
     expenses: expenses.map((item) => ({
       id: item.id,

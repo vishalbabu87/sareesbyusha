@@ -28,6 +28,8 @@ export interface SareeRecord {
   soldDate?: string;
   notes: string;
   billId?: string;
+  imageUrl?: string;
+  lotNumber?: string;
 }
 
 export interface ExpenseRecord {

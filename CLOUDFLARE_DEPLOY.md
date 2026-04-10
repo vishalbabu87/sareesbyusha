@@ -58,8 +58,40 @@ npm run deploy
 
 Or manually:
 ```bash
-wrangler pages deploy .vercel/output/static
+wrangler pages deploy .vercel/output/static --project-name sareesbyusha
 ```
+
+## Fixing "Internal Server Error" (must-do checklist)
+
+If your site deploys but shows 500/Internal Server Error, this is usually one of these:
+
+1. **Missing `DATABASE_URL` in Cloudflare Pages env vars**
+2. **Old build output path deployment mismatch**
+3. **Stale secret/config from previous deployments**
+
+Use this exact sequence:
+
+```bash
+# 1) Ensure latest code is pushed
+git add .
+git commit -m "cloudflare runtime/db fixes"
+git push
+
+# 2) Set DATABASE_URL in Cloudflare Pages project (Production and Preview)
+wrangler secret put DATABASE_URL
+
+# 3) Trigger a fresh deploy
+npm run deploy
+```
+
+Then verify:
+
+- `https://<your-domain>/api/test-db` should return `status: "success"`
+- `https://<your-domain>/api/debug` should show `database_url: "PRESENT"`
+
+If either fails, re-check the `DATABASE_URL` value in Cloudflare Pages Dashboard:
+
+**Pages → sareesbyusha → Settings → Environment variables**
 
 ## Configuration
 

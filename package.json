@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "prisma generate --no-engine && next build",
     "pages:build": "next-on-pages",
-    "pages:deploy": "wrangler pages deploy .vercel/output --project-name sareesbyusha",
-    "deploy": "npm run build && npm run pages:deploy -- --project-name sareesbyusha",
+    "pages:deploy": "wrangler pages deploy .vercel/output/static --project-name sareesbyusha",
+    "pages:dev": "wrangler pages dev .vercel/output/static",
+    "deploy": "npm run pages:build && npm run pages:deploy",
     "preview": "npm run pages:build && npm run pages:dev"
   },
   "dependencies": {

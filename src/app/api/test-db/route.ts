@@ -4,29 +4,38 @@ import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
 export async function GET() {
-  // Hardcoded for a 1-time connection test to confirm if the issue is Variable Mapping
-  const TEST_URL = "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RfaWQiOjEsInNlY3VyZV9rZXkiOiJza19uZzhuOFF3c2RkX25DWDdEakE5R0wiLCJhcGlfa2V5IjoiMDFLTldDMTkwN1lDTUE1NUtXOUJIQUtUVjYiLCJ0ZW5hbnRfaWQiOiI4YjEwYzZjOTk0MTk0OWQ4NDhiYjY2YzNiMzY2ODNiMWUzNDQ3YjQxZDUxOTI5MWVhNzU4ZmQwNTgwNGZlMzFjIiwiaW50ZXJuYWxfc2VjcmV0IjoiY2Q2M2YzNzQtZGRiOS00MjQzLWIwMjAtY2QzM2E1MWI1NzBiIn0.U2pCu_Y4tnRh_1_jHVopPXx9Ulwj5s1cWJ9xHIQAqE4";
+  const testUrl = process.env.DATABASE_URL;
+
+  if (!testUrl) {
+    return NextResponse.json(
+      {
+        status: 'error',
+        message: 'DATABASE_URL is missing',
+      },
+      { status: 500 }
+    );
+  }
 
   try {
-    console.log('Force-connecting to DB...');
+    console.log('Testing DB connection from env...');
     const prisma = new PrismaClient({
-      datasources: { db: { url: TEST_URL } }
+      datasources: { db: { url: testUrl } },
+      log: ['error'],
     }).$extends(withAccelerate());
 
     const count = await (prisma as any).saree.count();
-    
+
     return NextResponse.json({
       status: 'success',
-      message: 'Direct connection works!',
+      message: 'DB connection works!',
       saree_count: count,
-      connection: 'hardcoded'
+      connection: 'environment-variable'
     });
   } catch (error: any) {
     return NextResponse.json({
       status: 'error',
       message: error?.message || 'Database connection failed',
-      details: error,
-      url_length: TEST_URL.length
+      details: error
     }, { status: 500 });
   }
 }

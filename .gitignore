@@ -1,6 +1,8 @@
 node_modules
 .next
 .vercel
+.env
+.env.*
 uploads
 public/uploads
 prisma/dev.db

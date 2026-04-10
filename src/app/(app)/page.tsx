@@ -45,12 +45,15 @@ export default async function DashboardPage() {
               </div>
             </div>
           </div>
-          <button 
-            onClick={() => window.location.reload()}
-            className="w-full mt-8 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors font-medium"
+          <a
+            href="/"
+            className="w-full mt-8 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors font-medium text-center block"
           >
             Retry Connection
-          </button>
+          </a>
+          <p className="mt-3 text-center text-xs text-slate-500">
+            If this keeps failing, check <span className="font-mono">DATABASE_URL</span> in Cloudflare Pages environment variables.
+          </p>
         </div>
       </div>
     );

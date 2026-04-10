@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run pages:build",
+    "build": "prisma generate --no-engine && next build",
     "build:next": "prisma generate --no-engine && next build",
-    "pages:build": "prisma generate --no-engine && next-on-pages",
+    "pages:build": "next-on-pages",
+    "pages:build:skip": "next-on-pages --skip-build",
     "pages:deploy": "wrangler pages deploy .vercel/output/static --project-name sareesbyusha",
     "pages:dev": "wrangler pages dev .vercel/output/static",
     "deploy": "npm run pages:build && npm run pages:deploy",

@@ -53,6 +53,13 @@ Set in **Cloudflare Pages → Project Settings → Builds & deployments**:
 - **Build command:** `npm run build`
 - **Build output directory:** `.vercel/output/static`
 
+`npm run build` must run a plain Next.js build (`next build`).
+If it points to `next-on-pages`, Cloudflare can fail with recursive build errors.
+
+For safety, this project uses:
+- `build` → `next build`
+- `pages:build` → `next-on-pages`
+
 Do **not** use `npx wrangler versions upload` for this project.
 That command is for Worker version uploads and causes the
 "Missing entry-point to Worker script" error.

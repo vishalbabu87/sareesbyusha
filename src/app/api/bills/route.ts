@@ -1,10 +1,15 @@
 export const runtime = 'edge';
-import { mkdir, writeFile } from 'node:fs/promises';
-import path from 'node:path';
-import { randomUUID } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import { requireSessionUser } from '@/lib/auth';
 import { db } from '@/lib/db';
+
+async function fileToDataUrl(file: File): Promise<string> {
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+  const base64 = buffer.toString('base64');
+  const mimeType = file.type || 'application/octet-stream';
+  return `data:${mimeType};base64,${base64}`;
+}
 
 export async function POST(request: Request) {
   try {
@@ -28,14 +33,11 @@ export async function POST(request: Request) {
     if (file instanceof File && file.size > 0) {
       fileName = file.name;
       fileType = file.type;
-      const uploadsDir = path.join(process.cwd(), 'public', 'uploads', 'bills');
-      await mkdir(uploadsDir, { recursive: true });
-      const ext = path.extname(file.name) || '.bin';
-      const safeName = `${randomUUID()}${ext}`;
-      const filePath = path.join(uploadsDir, safeName);
-      const buffer = Buffer.from(await file.arrayBuffer());
-      await writeFile(filePath, buffer);
-      fileUrl = `/uploads/bills/${safeName}`;
+      // Limit size to ~1.5MB for database storage
+      if (file.size > 1_600_000) {
+        return NextResponse.json({ error: 'File too large. Max 1.5MB allowed.' }, { status: 400 });
+      }
+      fileUrl = await fileToDataUrl(file);
     }
 
     const bill = await db.bill.create({

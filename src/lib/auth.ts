@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { createHash, randomBytes } from 'node:crypto';
+import { createHash, randomBytes } from 'crypto';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 import bcrypt from 'bcryptjs';

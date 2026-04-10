@@ -8,8 +8,12 @@ export const db = new Proxy({} as any, {
   get(target, prop) {
     if (!prismaInstance) {
       console.log('Initializing Prisma Client...');
+      const url = process.env.DATABASE_URL;
       prismaInstance = new PrismaClient({
-        log: ['error'], // Keep it quiet on production
+        datasources: {
+          db: { url }
+        },
+        log: ['error'], 
       }).$extends(withAccelerate());
     }
     return prismaInstance[prop];

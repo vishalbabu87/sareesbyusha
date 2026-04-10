@@ -83,7 +83,7 @@ export async function seedDemoWorkspace(ownerId: string) {
     return;
   }
 
-  await db.$transaction(async (tx) => {
+  await db.$transaction(async (tx: any) => {
     for (const bill of demoData.bills) {
       await tx.bill.create({
         data: {

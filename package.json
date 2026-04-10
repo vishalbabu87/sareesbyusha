@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node -e \"const fs=require('fs'); if(fs.existsSync('.building')){ fs.unlinkSync('.building'); require('child_process').spawnSync('npm', ['run', 'next:build'], {stdio:'inherit', shell:true}); } else { fs.writeFileSync('.building',''); require('child_process').spawnSync('npm', ['run', 'pages:build'], {stdio:'inherit', shell:true}); }\"",
+    "next:build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "postinstall": "prisma generate",

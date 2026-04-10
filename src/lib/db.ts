@@ -1,25 +1,26 @@
-import { Prisma, PrismaClient } from '@prisma/client/edge';
+import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: any;
-};
+const globalForPrisma = globalThis as unknown as { prisma: any };
 
-const databaseUrl = process.env.DATABASE_URL;
+function createClient() {
+  const url =
+    process.env.DATABASE_URL ||
+    (globalThis as any).DATABASE_URL ||
+    (globalThis as any).env?.DATABASE_URL;
 
-if (!databaseUrl) {
-  console.error('[db] DATABASE_URL is missing. Set it in Cloudflare Pages -> Settings -> Environment Variables.');
+  if (!url) {
+    throw new Error(
+      'DATABASE_URL is not set. Add it in Vercel → Settings → Environment Variables.'
+    );
+  }
+
+  return new PrismaClient({
+    datasources: { db: { url } },
+    log: ['error'],
+  }).$extends(withAccelerate());
 }
 
-const prismaOptions: Prisma.PrismaClientOptions = {
-  log: ['error'],
-};
-
-if (databaseUrl) {
-  prismaOptions.datasources = { db: { url: databaseUrl } };
-}
-
-export const db =
-  globalForPrisma.prisma || new PrismaClient(prismaOptions).$extends(withAccelerate());
+export const db = globalForPrisma.prisma ?? createClient();
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;

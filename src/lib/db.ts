@@ -7,8 +7,13 @@ let prismaInstance: any = null;
 export const db = new Proxy({} as any, {
   get(target, prop) {
     if (!prismaInstance) {
-      console.log('Initializing Prisma Client...');
-      const url = process.env.DATABASE_URL;
+      console.log('Initializing Prisma Client for Edge...');
+      
+      // Try multiple ways to find the DATABASE_URL
+      const url = process.env.DATABASE_URL || 
+                  (globalThis as any).DATABASE_URL || 
+                  (globalThis as any).env?.DATABASE_URL;
+
       prismaInstance = new PrismaClient({
         datasources: {
           db: { url }

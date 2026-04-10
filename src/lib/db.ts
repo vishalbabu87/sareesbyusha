@@ -1,9 +1,12 @@
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
-const globalForPrisma = globalThis as unknown as { prisma: any };
+// Lazy singleton - only created on first actual query, not at import time
+let _client: any = null;
 
-function createClient() {
+function getClient() {
+  if (_client) return _client;
+
   const url =
     process.env.DATABASE_URL ||
     (globalThis as any).DATABASE_URL ||
@@ -15,12 +18,18 @@ function createClient() {
     );
   }
 
-  return new PrismaClient({
+  _client = new PrismaClient({
     datasources: { db: { url } },
     log: ['error'],
   }).$extends(withAccelerate());
+
+  return _client;
 }
 
-export const db = globalForPrisma.prisma ?? createClient();
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = db;
+// Proxy so `db.user.findMany()` etc. all work normally
+// but the client is only created on the first actual method call
+export const db = new Proxy({} as any, {
+  get(_target, prop: string) {
+    return (getClient() as any)[prop];
+  },
+});

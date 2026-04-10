@@ -11,7 +11,7 @@
     "postinstall": "prisma generate",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
-    "pages:build": "next-on-pages",
+    "pages:build": "next-on-pages && node -e \"const fs=require('fs'); if(fs.existsSync('.vercel/output/static')){fs.writeFileSync('.vercel/output/static/.assetsignore', '_worker.js')}\"",
     "pages:dev": "wrangler pages dev .vercel/output --transpile-only --compatibility-date=2024-01-01",
     "pages:deploy": "wrangler pages deploy .vercel/output",
     "deploy": "npm run pages:build && npm run pages:deploy",

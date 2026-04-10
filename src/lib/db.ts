@@ -14,6 +14,10 @@ export const db = new Proxy({} as any, {
                   (globalThis as any).DATABASE_URL || 
                   (globalThis as any).env?.DATABASE_URL;
 
+      if (!url) {
+        throw new Error('DATABASE_URL is missing. Please check your Cloudflare Pages Variables.');
+      }
+      
       prismaInstance = new PrismaClient({
         datasources: {
           db: { url }

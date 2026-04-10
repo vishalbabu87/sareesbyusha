@@ -26,7 +26,7 @@ export async function getBusinessData(ownerId: string): Promise<BusinessData> {
   ]);
 
   return {
-    sarees: sarees.map((item) => ({
+    sarees: sarees.map((item: any) => ({
       id: item.id,
       sku: item.sku,
       name: item.name,
@@ -44,7 +44,7 @@ export async function getBusinessData(ownerId: string): Promise<BusinessData> {
       imageUrl: item.imageUrl ?? undefined,
       lotNumber: item.lotNumber ?? undefined,
     })),
-    expenses: expenses.map((item) => ({
+    expenses: expenses.map((item: any) => ({
       id: item.id,
       title: item.title,
       category: item.category,
@@ -55,7 +55,7 @@ export async function getBusinessData(ownerId: string): Promise<BusinessData> {
       linkedBillId: item.linkedBillId ?? undefined,
       notes: item.notes ?? undefined,
     })),
-    bills: bills.map((item) => ({
+    bills: bills.map((item: any) => ({
       id: item.id,
       supplierName: item.supplierName,
       totalAmount: item.totalAmount,
@@ -65,7 +65,7 @@ export async function getBusinessData(ownerId: string): Promise<BusinessData> {
       fileType: item.fileType ?? undefined,
       fileDataUrl: item.fileUrl ?? undefined,
     })),
-    sales: sales.map((item) => ({
+    sales: sales.map((item: any) => ({
       id: item.id,
       sareeId: item.sareeId,
       sellingPrice: item.sellingPrice,

@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { getSessionUser } from '@/lib/auth';
 import { getBusinessData } from '@/lib/server-data';
 import { ExpenseDesk } from '@/components/expense-desk';

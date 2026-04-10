@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { AuthShell } from '@/components/auth-shell';
 import { getHasUsers, getSessionUser } from '@/lib/auth';
 import { redirect } from 'next/navigation';

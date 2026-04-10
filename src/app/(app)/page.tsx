@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { getSessionUser } from '@/lib/auth';
 import { getBusinessData } from '@/lib/server-data';
 import { DashboardView } from '@/components/dashboard-view';

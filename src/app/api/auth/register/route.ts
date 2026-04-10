@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { createSession, getHasUsers, hashPassword } from '@/lib/auth';

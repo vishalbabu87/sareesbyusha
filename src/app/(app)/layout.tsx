@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { getHasUsers, getSessionUser } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import { AppNav } from '@/components/app-nav';

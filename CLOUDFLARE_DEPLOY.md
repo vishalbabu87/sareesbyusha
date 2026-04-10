@@ -46,6 +46,17 @@ vercel
 
 ## Build and Deploy
 
+### Use these commands in Cloudflare Pages settings
+
+Set in **Cloudflare Pages → Project Settings → Builds & deployments**:
+
+- **Build command:** `npm run build`
+- **Build output directory:** `.vercel/output/static`
+
+Do **not** use `npx wrangler versions upload` for this project.
+That command is for Worker version uploads and causes the
+"Missing entry-point to Worker script" error.
+
 ### Step 1: Build the static site
 ```bash
 npm run pages:build

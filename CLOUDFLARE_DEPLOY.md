@@ -29,7 +29,9 @@ wrangler login
 wrangler secret put DATABASE_URL
 # Paste your Prisma Accelerate connection string
 
-wrangler secret put SESSION_SECRET
+# (Optional) This project does not currently use SESSION_SECRET.
+# Keep this if you later migrate sessions to signed/encrypted cookies.
+# wrangler secret put SESSION_SECRET
 # Generate a random string: openssl rand -base64 32
 ```
 
@@ -46,7 +48,7 @@ vercel
 
 ### Step 1: Build the static site
 ```bash
-npm run build
+npm run pages:build
 ```
 
 ### Step 2: Deploy to Cloudflare Pages
@@ -56,7 +58,7 @@ npm run deploy
 
 Or manually:
 ```bash
-wrangler pages deploy dist
+wrangler pages deploy .vercel/output/static
 ```
 
 ## Configuration
@@ -68,7 +70,7 @@ Set these in the Cloudflare Dashboard > Pages > Your Project > Settings > Enviro
 | Variable | Description | Example |
 |----------|-------------|---------|
 | `DATABASE_URL` | Prisma Accelerate URL | `prisma://accelerate.prisma-data.net/?api_key=xxx` |
-| `SESSION_SECRET` | Random secret for cookies | `your-random-secret-here` |
+| `SESSION_SECRET` | (Optional) Random secret for cookies | `your-random-secret-here` |
 | `NODE_ENV` | Environment | `production` |
 
 ### Database Setup
@@ -105,10 +107,18 @@ For a fully static site that works anywhere:
 ## Testing Locally
 
 ```bash
-# Build and preview
-npm run build
-npm run preview
+# Build and preview (Cloudflare Pages)
+npm run pages:build
+npm run pages:dev
 ```
+
+## Windows note
+
+`@cloudflare/next-on-pages` uses the Vercel CLI internally and can be unreliable on Windows.
+If local `npm run pages:build` fails on Windows, use one of these:
+
+1. **Let Cloudflare Pages build it (recommended)** by connecting your GitHub repo
+2. **Run builds in WSL** (Ubuntu on Windows)
 
 ## Support
 

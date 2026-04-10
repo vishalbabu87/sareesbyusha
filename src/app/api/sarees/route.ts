@@ -3,23 +3,15 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { requireSessionUser } from '@/lib/auth';
 import { db } from '@/lib/db';
-
-// Helper to convert File to base64 data URL
-async function fileToDataUrl(file: File): Promise<string> {
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-  const base64 = buffer.toString('base64');
-  const mimeType = file.type || 'image/jpeg';
-  return `data:${mimeType};base64,${base64}`;
-}
+import { fileToDataUrl } from '@/lib/base64';
 
 export async function POST(request: Request) {
   try {
     const user = await requireSessionUser();
-    
+
     // Parse FormData
     const formData = await request.formData();
-    
+
     const name = formData.get('name') as string;
     const collection = formData.get('collection') as string;
     const fabric = formData.get('fabric') as string;
@@ -46,7 +38,7 @@ export async function POST(request: Request) {
       if (imageFile.size > 1_600_000) {
         return NextResponse.json({ error: 'Image too large. Max 1.5MB allowed.' }, { status: 400 });
       }
-      imageUrl = await fileToDataUrl(imageFile);
+      imageUrl = await fileToDataUrl(imageFile, 'image/jpeg');
     }
 
     const saree = await db.saree.create({

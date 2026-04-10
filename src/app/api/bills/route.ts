@@ -2,14 +2,7 @@ export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 import { requireSessionUser } from '@/lib/auth';
 import { db } from '@/lib/db';
-
-async function fileToDataUrl(file: File): Promise<string> {
-  const bytes = await file.arrayBuffer();
-  // Use Uint8Array instead of Buffer (Buffer not available in Edge)
-  const base64 = btoa(String.fromCharCode(...new Uint8Array(bytes)));
-  const mimeType = file.type || 'application/octet-stream';
-  return `data:${mimeType};base64,${base64}`;
-}
+import { fileToDataUrl } from '@/lib/base64';
 
 export async function POST(request: Request) {
   try {
@@ -37,7 +30,7 @@ export async function POST(request: Request) {
       if (file.size > 1_600_000) {
         return NextResponse.json({ error: 'File too large. Max 1.5MB allowed.' }, { status: 400 });
       }
-      fileUrl = await fileToDataUrl(file);
+      fileUrl = await fileToDataUrl(file, 'application/octet-stream');
     }
 
     const bill = await db.bill.create({

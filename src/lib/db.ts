@@ -2,38 +2,28 @@ import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
 /**
- * DATABASE INITIALIZATION (Cloudflare Edge Optimized)
+ * WORKER-NATIVE DATABASE CLIENT
  * 
- * Research shows that accessing process.env at the top level can be flaky on Cloudflare.
- * We use a Lazy Singleton pattern to ensure the URL is read exactly when needed.
+ * In a Cloudflare Worker, the most reliable way to get environment variables 
+ * is from the 'env' object passed at request time. 
+ * We use a proxy to ensure we always use the latest environment.
  */
 
-const globalForPrisma = globalThis as unknown as {
-    prisma: ReturnType<typeof createPrismaClient>;
-};
+export const db = new Proxy({} as any, {
+    get(target, prop) {
+        // Look for the URL in the global context (Cloudflare Workers)
+        const url = (globalThis as any).DATABASE_URL || 
+                    (globalThis as any).process?.env?.DATABASE_URL ||
+                    (globalThis as any).env?.DATABASE_URL;
 
-function createPrismaClient() {
-    // Robust environment variable lookup
-    const url = process.env.DATABASE_URL || 
-                (globalThis as any).DATABASE_URL || 
-                (globalThis as any).env?.DATABASE_URL;
+        if (!url) {
+            throw new Error('DATABASE_URL is missing. Please check your Worker environment variables.');
+        }
 
-    if (!url) {
-        console.error('CRITICAL: DATABASE_URL is missing in the current environment.');
-        throw new Error('DATABASE_URL is missing. Please check your Cloudflare Secrets/Variables.');
+        const prisma = new PrismaClient({
+            datasources: { db: { url } }
+        }).$extends(withAccelerate());
+
+        return (prisma as any)[prop];
     }
-
-    return new PrismaClient({
-        datasources: {
-            db: { url }
-        },
-        log: ['error'], 
-    }).$extends(withAccelerate());
-}
-
-// Singleton prevents exhausting database connections in development
-export const db = globalForPrisma.prisma ?? createPrismaClient();
-
-if (process.env.NODE_ENV !== 'production') {
-    globalForPrisma.prisma = db;
-}
+});

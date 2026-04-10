@@ -10,19 +10,23 @@ export async function getBusinessData(ownerId: string): Promise<BusinessData> {
     db.saree.findMany({
       where: { ownerId },
       orderBy: { purchaseDate: 'desc' },
-    }),
+      cacheStrategy: { ttl: 30, swr: 60 },
+    } as any),
     db.expense.findMany({
       where: { ownerId },
       orderBy: { date: 'desc' },
-    }),
+      cacheStrategy: { ttl: 30, swr: 60 },
+    } as any),
     db.bill.findMany({
       where: { ownerId },
       orderBy: { uploadDate: 'desc' },
-    }),
+      cacheStrategy: { ttl: 30, swr: 60 },
+    } as any),
     db.sale.findMany({
       where: { ownerId },
       orderBy: { date: 'desc' },
-    }),
+      cacheStrategy: { ttl: 30, swr: 60 },
+    } as any),
   ]);
 
   return {

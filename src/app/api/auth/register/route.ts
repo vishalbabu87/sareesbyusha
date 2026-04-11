@@ -1,7 +1,7 @@
 export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-import { createSession, getHasUsers, hashPassword } from '@/lib/auth';
+import { createSession, hashPassword } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { seedDemoWorkspace } from '@/lib/server-data';
 
@@ -13,10 +13,6 @@ const schema = z.object({
 
 export async function POST(request: Request) {
   try {
-    const hasUsers = await getHasUsers();
-    if (hasUsers) {
-      return NextResponse.json({ error: 'Registration is disabled after the first owner account is created.' }, { status: 403 });
-    }
 
     const payload = schema.parse(await request.json());
     const user = await db.user.create({
